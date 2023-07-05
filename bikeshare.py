@@ -11,7 +11,7 @@ VALID_YN = ['yes', 'no']
 
 def get_filters():
     """
-    Asks user to specify a city, month, and day to analyze.
+    Ask the user to specify a city, month, and day to analyze.
 
     Returns:
         (str) city - name of the city to analyze
@@ -19,10 +19,10 @@ def get_filters():
         (str) day - name of the day of week to filter by, or "all" to apply no day filter
     """
     print('Hello! Let\'s explore some US bikeshare data!\n\n')
-    
+
     city, month, day = '', '', ''
     month_str_suffix, day_str_suffix = '', ''
-    
+
     # Get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
     while_count = 0
     while True:
@@ -78,7 +78,7 @@ def load_data(city, month, day):
         df - Pandas DataFrame containing city data filtered by month and day
     """
     df = pd.read_csv(CITY_DATA[city])
-    
+
     # Convert the Start Time column to datetime
     df['Start Time'] = pd.to_datetime(df['Start Time'])
 
@@ -168,7 +168,7 @@ def user_stats(df):
     # Display counts of gender
     if is_valid_column(df, 'Gender'):
         print(f"\nThe counts of gender is: \n{df['Gender'].value_counts()}")
-    else: 
+    else:
         print('\nThe gender column is unavailable for this dataset')
 
     # Display earliest, most recent, and most common year of birth
@@ -176,23 +176,23 @@ def user_stats(df):
         print('\nThe earliest birth year is: \n', int(df['Birth Year'].min()))
         print('\nThe most recent birth year is: \n', int(df['Birth Year'].max()))
         print('\nThe most common birth year is: \n', int(df['Birth Year'].mode()[0]))
-    else: 
+    else:
         print('\nThe year of birth is unavailable for this dataset\n')
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-    
+
 
 def display_raw_data(city):
     """Displays raw data 5 rows at a time."""
-    
+
     print('\nDisplaying raw file data...\n')
-    
+
     file_name = CITY_DATA[city]
     # Skip header row
     file_line_count = 1
     get_lines = ''
-    
+
     while get_lines.lower() == 'yes' or get_lines.lower() == '':
         while_count = 0
         while True:
@@ -203,14 +203,14 @@ def display_raw_data(city):
                 break
             while_count += 1
         while_count = 0
-        
+
         if get_lines.lower() == 'yes':
             with open(file_name, 'r') as file_lines:
                 lines = [line for line in file_lines][file_line_count:file_line_count+5]
                 print('\n')
                 print(*lines, sep='\n')
-                
-            file_line_count += 5             
+
+            file_line_count += 5
 
 
 def is_valid_column(df, column):
@@ -223,12 +223,12 @@ def is_valid_column(df, column):
     Returns:
         boolean
     """
-    
+
     for label, content in df.items():
         if label == column:
             return True
-    return False        
-        
+    return False
+
 def main():
     while True:
         city, month, day = get_filters()
@@ -249,7 +249,7 @@ def main():
             if restart.lower() in VALID_YN:
                 break
             while_count += 1
-            
+
         if restart.lower() == 'no':
             print('\nGoodbye')
             break
