@@ -40,7 +40,7 @@ def get_filters():
     while True:
         if while_count > 0:
             print('The month value "' + month + '" you have entered is invalid.\n')
-        month = input('What month would you like to view data for? Enter January, February, March, April, May, June or all\n')
+        month = input('What month would you like to view data for? Enter: ' + ', '.join(VALID_MONTHS) + '\n')
         if month.lower() in VALID_MONTHS:
             break
         while_count += 1
@@ -53,7 +53,7 @@ def get_filters():
     while True:
         if while_count > 0:
             print('The day value "' + day + '" you have entered is invalid.\n')
-        day = input('What day would you like to view data for? Enter Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday or all\n')
+        day = input('What day would you like to view data for? Enter: ' + ', '.join(VALID_DAYS) + '\n')
         if day.lower() in VALID_DAYS:
             break
         while_count += 1
